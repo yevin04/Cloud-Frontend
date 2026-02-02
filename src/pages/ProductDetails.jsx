@@ -178,7 +178,7 @@ const styles = {
     fontWeight: "600",
     fontSize: "15px",
     cursor: "pointer",
-    marginTop: "4px"
+    marginTop: "3px"
   }
 };
 
