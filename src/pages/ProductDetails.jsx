@@ -16,14 +16,14 @@ function ProductDetails() {
   }, []);
 
   const fetchProduct = async () => {
-    const res = await fetch(`http://localhost:4002/api/products/${id}`);
+    const res = await fetch(`http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products/${id}`);
     const data = await res.json();
     setProduct(data);
   };
 
   const fetchInventory = async () => {
     const res = await fetch(
-      `http://localhost:4003/api/inventory/${id}`
+      `http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/inventory/${id}`
     );
     const data = await res.json();
     setInventory(data);

@@ -29,7 +29,7 @@ function Cart() {
     }
 
     try {
-      const response = await fetch("http://localhost:4004/api/orders", {
+      const response = await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

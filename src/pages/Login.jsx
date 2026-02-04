@@ -13,7 +13,7 @@ function Login() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:4001/api/auth/login", {
+      const res = await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

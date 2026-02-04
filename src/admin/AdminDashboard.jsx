@@ -11,7 +11,7 @@ function AdminDashboard() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:4002/api/products");
+      const res = await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products");
       const data = await res.json();
       setProducts(data);
     } catch (err) {

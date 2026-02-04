@@ -14,7 +14,7 @@ function Category() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:4002/api/products");
+      const res = await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products");
       const data = await res.json();
       // Filter by category (case-insensitive)
       const filtered = data.filter(
