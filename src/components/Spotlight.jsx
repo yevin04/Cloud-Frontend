@@ -6,7 +6,7 @@ function Spotlight() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:4002/api/products")
+    fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products")
       .then((res) => res.json())
       .then((data) => {
         // ✅ show only spotlight products
