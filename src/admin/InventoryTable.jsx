@@ -21,7 +21,8 @@ function InventoryTable({ products }) {
 
   const fetchInventory = async (productId) => {
     try {
-      const res = await fetch(`http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/inventory/${productId}`);
+      import apiBase from '../apiBase';
+      const res = await fetch(`${apiBase}/inventory/${productId}`);
       const data = await res.json();
       setInventory(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -32,7 +33,7 @@ function InventoryTable({ products }) {
   const handleCreate = async (e) => {
     e.preventDefault();
     
-    await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/inventory", {
+    await fetch(`${apiBase}/inventory`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -53,7 +54,7 @@ function InventoryTable({ products }) {
   const handleUpdate = async (e) => {
     e.preventDefault();
     
-    await fetch(`http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/inventory/${editingItem._id}`, {
+    await fetch(`${apiBase}/inventory/${editingItem._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

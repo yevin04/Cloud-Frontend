@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import apiBase from '../apiBase';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,7 +14,8 @@ function Login() {
     setError("");
 
     try {
-      const res = await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/auth/login", {
+      
+      const res = await fetch(`${apiBase}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

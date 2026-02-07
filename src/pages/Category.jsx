@@ -14,11 +14,16 @@ function Category() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products");
+      import apiBase from '../apiBase';
+      const res = await fetch(`${apiBase}/products`);
       const data = await res.json();
+      // Accept both { products: [...] } and array
+      const items = Array.isArray(data) ? data : data.products || [];
       // Filter by category (case-insensitive)
-      const filtered = data.filter(
-        (p) => p.category.toLowerCase() === categoryName.toLowerCase()
+      // Normalize both category and categoryName for robust comparison
+      const normalize = (str) => (str || '').trim().toLowerCase();
+      const filtered = items.filter(
+        (p) => normalize(p.category) === normalize(categoryName)
       );
       setProducts(filtered);
     } catch (error) {

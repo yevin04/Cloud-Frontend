@@ -29,7 +29,8 @@ function Cart() {
     }
 
     try {
-      const response = await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/orders", {
+      import apiBase from '../apiBase';
+      const response = await fetch(`${apiBase}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

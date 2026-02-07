@@ -8,7 +8,8 @@ function InventoryForm({ productId, onSaved }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/inventory", {
+    import apiBase from '../apiBase';
+    await fetch(`${apiBase}/inventory`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

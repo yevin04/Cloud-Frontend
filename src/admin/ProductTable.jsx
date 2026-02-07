@@ -11,23 +11,25 @@ function ProductTable({ onProductChange }) {
   }, []);
 
   const fetchProducts = async () => {
-    const res = await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products");
+    import apiBase from '../apiBase';
+    const res = await fetch(`${apiBase}/products`);
     const data = await res.json();
-    setProducts(data);
+    const items = Array.isArray(data) ? data : data.products || [];
+    setProducts(items);
     if (onProductChange) onProductChange();
   };
 
   const handleSave = async (productData) => {
     if (selectedProduct) {
       // Update
-      await fetch(`http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products/${selectedProduct._id}`, {
+      await fetch(`${apiBase}/products/${selectedProduct._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(productData)
       });
     } else {
       // Create
-      await fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products", {
+      await fetch(`${apiBase}/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(productData)
@@ -47,7 +49,7 @@ function ProductTable({ onProductChange }) {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
     
-    await fetch(`http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products/${id}`, {
+    await fetch(`${apiBase}/products/${id}`, {
       method: "DELETE"
     });
     fetchProducts();

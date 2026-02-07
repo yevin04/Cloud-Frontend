@@ -6,11 +6,12 @@ function Spotlight() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://nikes-alb-1822383016.ap-south-1.elb.amazonaws.com/api/products")
+    import apiBase from '../apiBase';
+    fetch(`${apiBase}/products`)
       .then((res) => res.json())
       .then((data) => {
-        // ✅ show only spotlight products
-        setProducts(data.filter((p) => p.spotlight));
+        const items = Array.isArray(data) ? data : data.products || [];
+        setProducts(items.filter((p) => p.spotlight));
       })
       .catch(() => setProducts([]));
   }, []);
