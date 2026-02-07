@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductForm from "./ProductForm";
+import apiBase from '../apiBase';
 
 function ProductTable({ onProductChange }) {
   const [products, setProducts] = useState([]);
@@ -11,7 +12,7 @@ function ProductTable({ onProductChange }) {
   }, []);
 
   const fetchProducts = async () => {
-    import apiBase from '../apiBase';
+    
     const res = await fetch(`${apiBase}/products`);
     const data = await res.json();
     const items = Array.isArray(data) ? data : data.products || [];

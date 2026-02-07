@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import apiBase from '../apiBase';
 
 function Spotlight() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    import apiBase from '../apiBase';
+    
     fetch(`${apiBase}/products`)
       .then((res) => res.json())
       .then((data) => {
