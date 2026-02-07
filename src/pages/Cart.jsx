@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import apiBase from '../apiBase';
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -29,7 +30,7 @@ function Cart() {
     }
 
     try {
-      import apiBase from '../apiBase';
+    
       const response = await fetch(`${apiBase}/orders`, {
         method: "POST",
         headers: {

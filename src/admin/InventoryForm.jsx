@@ -1,4 +1,5 @@
 import { useState } from "react";
+import apiBase from '../apiBase';
 
 function InventoryForm({ productId, onSaved }) {
   const [variant, setVariant] = useState("");
@@ -8,7 +9,7 @@ function InventoryForm({ productId, onSaved }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    import apiBase from '../apiBase';
+    
     await fetch(`${apiBase}/inventory`, {
       method: "POST",
       headers: {

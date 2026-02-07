@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import apiBase from '../apiBase';
 
 function InventoryTable({ products }) {
   const [inventory, setInventory] = useState([]);
@@ -21,7 +22,7 @@ function InventoryTable({ products }) {
 
   const fetchInventory = async (productId) => {
     try {
-      import apiBase from '../apiBase';
+      
       const res = await fetch(`${apiBase}/inventory/${productId}`);
       const data = await res.json();
       setInventory(Array.isArray(data) ? data : []);

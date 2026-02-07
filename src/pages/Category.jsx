@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import apiBase from '../apiBase';
 
 function Category() {
   const { categoryName } = useParams();
@@ -14,7 +15,7 @@ function Category() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      import apiBase from '../apiBase';
+      
       const res = await fetch(`${apiBase}/products`);
       const data = await res.json();
       // Accept both { products: [...] } and array

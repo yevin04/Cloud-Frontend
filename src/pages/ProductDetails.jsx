@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import apiBase from '../apiBase';
 
 function ProductDetails() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ function ProductDetails() {
   }, []);
 
   const fetchProduct = async () => {
-    import apiBase from '../apiBase';
+    
     const res = await fetch(`${apiBase}/products/${id}`);
     const data = await res.json();
     setProduct(data);
