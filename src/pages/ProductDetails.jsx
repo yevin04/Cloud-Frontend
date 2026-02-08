@@ -53,7 +53,7 @@ function ProductDetails() {
   return (
     <div style={styles.card}>
       <img 
-        src={product.images?.[0] || "https://via.placeholder.com/400"} 
+        src={product.image || product.images?.[0] || "https://via.placeholder.com/400"} 
         alt={product.name}
         style={styles.image}
       />
