@@ -35,18 +35,7 @@ function ProductDetails() {
     inventory.find((i) => i.variant === variant)?.stock || 0;
 
   const addToCart = () => {
-    if (!variant) {
-      alert("Please select a variant");
-      return;
-    }
-
-    if (qty > selectedStock) {
-      alert("Not enough stock");
-      return;
-    }
-
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     cart.push({
       productId: product._id,
       name: product.name,
@@ -54,9 +43,7 @@ function ProductDetails() {
       variant,
       quantity: qty
     });
-
     localStorage.setItem("cart", JSON.stringify(cart));
-
     alert("Added to cart ✅");
     navigate("/cart");
   };
@@ -105,11 +92,7 @@ function ProductDetails() {
 
       <button
         onClick={addToCart}
-        disabled={!variant || qty < 1}
-        style={{
-          ...styles.button,
-          backgroundColor: !variant ? "#aaa" : "#111"
-        }}
+        style={styles.button}
       >
         Add to Cart
       </button>
