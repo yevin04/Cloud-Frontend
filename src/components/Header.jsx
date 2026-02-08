@@ -13,7 +13,9 @@ function Header() {
   const showShopNav = !isAdminPage && !isLoginPage;
 
   const handleLogout = () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    // Optionally clear other user-specific data here
     navigate("/login");
   };
 

@@ -15,13 +15,14 @@ function Category() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      
       const res = await fetch(`${apiBase}/products`);
+      if (!res.ok) {
+        throw new Error(`Failed to fetch products: ${res.status}`);
+      }
       const data = await res.json();
       // Accept both { products: [...] } and array
       const items = Array.isArray(data) ? data : data.products || [];
       // Filter by category (case-insensitive)
-      // Normalize both category and categoryName for robust comparison
       const normalize = (str) => (str || '').trim().toLowerCase();
       const filtered = items.filter(
         (p) => normalize(p.category) === normalize(categoryName)
@@ -29,6 +30,7 @@ function Category() {
       setProducts(filtered);
     } catch (error) {
       setProducts([]);
+      console.error("Product fetch error:", error);
     }
     setLoading(false);
   };

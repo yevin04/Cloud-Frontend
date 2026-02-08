@@ -27,6 +27,7 @@ function App() {
           <Routes>
             {/* User routes */}
             <Route path="/" element={<Spotlight />} />
+            <Route path="/products" element={<Products />} />  
             <Route path="/login" element={<Login />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<Cart />} />

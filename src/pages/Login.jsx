@@ -29,9 +29,11 @@ function Login() {
         throw new Error(data.message || "Invalid credentials");
       }
 
-      // store token + role
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.role);
+      // Store token + role in localStorage
+      if (data.token && data.role) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
+      }
 
       // 🔑 role-based redirect
       if (data.role === "ADMIN") {
